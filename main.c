@@ -35,6 +35,8 @@ void amo(FILE* f, int *vars, int size) {
 
 void eo(FILE* f, int *vars, int size){
     /* YOUR CODE HERE */
+    alo(f, vars, size);
+    amo(f, vars, size);
 }
 
 
@@ -75,7 +77,7 @@ int main(int argc, char** argv)
             for(int k = 0; k < n; k++){
                 vars[k] = x(sudoku, i, j, k);
             }
-            teacher_eo(f, vars, n);
+            eo(f, vars, n);
         }
     }
 
@@ -84,12 +86,37 @@ int main(int argc, char** argv)
 
     fprintf(f, "c Column constraints.\n");
     /* YOUR CODE HERE */
+    for(int i = 0; i < n; i++) {
+        for(int k = 0; k < n; k++) {
+            for(int j = 0; j < n; j++){
+                vars[k] = x(sudoku, i, j, k);
+            }
+            eo(f, vars, n);
+        }
+    }
 
     fprintf(f, "c Region constraints.\n");
     /* YOUR CODE HERE */
+    const int l = sudoku->region_n_rows;
+    const int m = sudoku->region_n_cols;
+    for(int k = 0; k < n; k++){
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < l; j++){
+                vars[k] = x(sudoku, i, j, k);
+            }
+        }
+        eo(f, vars, n);
+    }
 
     fprintf(f, "c Fixed number constraints.\n");
     /* YOUR CODE HERE */
+    int **cells = sudok,u->**cells;
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < n; j++) {
+            int var = x(sudoku, i, j, cells[i][j]-1);
+            fprintf(f, "%d 0\n", var);
+        }
+    }
 
     /* formula created: clean up & close the instance file */
     free(vars);
