@@ -84,6 +84,8 @@ int main(int argc, char** argv)
     fprintf(f, "c Row constraints.\n");
     /* YOUR CODE HERE */
 
+
+
     fprintf(f, "c Column constraints.\n");
     /* YOUR CODE HERE */
     for(int i = 0; i < n; i++) {
