@@ -15,11 +15,21 @@ int x(Sudoku* s, int i, int j, int k) {
 
 void alo(FILE* f, int *vars, int size) {
     /* YOUR CODE HERE */
+    int i;
+    for(i = 0; i<size; i++){
+        fprintf(f, "%d ", vars[i]);
+    }
+    fprintf(f, "0\n");
 }
-
 
 void amo(FILE* f, int *vars, int size) {
     /* YOUR CODE HERE */
+    int i, j;
+    for(i=0; i<size-1; i++){
+        for(j=i+1; j<size; j++){
+            fprintf(f, "-%d -%d 0\n", vars[i], vars[j]);
+        }
+    }
 }
 
 
