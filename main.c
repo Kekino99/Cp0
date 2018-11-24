@@ -16,7 +16,7 @@ int x(Sudoku* s, int i, int j, int k) {
 void alo(FILE* f, int *vars, int size) {
     /* YOUR CODE HERE */
     int i;
-    for(i = 0; i<size; i++){
+    for(int i = 0; i<size; i++){
         fprintf(f, "%d ", vars[i]);
     }
     fprintf(f, "0\n");
@@ -24,9 +24,8 @@ void alo(FILE* f, int *vars, int size) {
 
 void amo(FILE* f, int *vars, int size) {
     /* YOUR CODE HERE */
-    int i, j;
-    for(i=0; i<size-1; i++){
-        for(j=i+1; j<size; j++){
+    for(int i=0; i<size-1; i++){
+        for(int j=i+1; j<size; j++){
             fprintf(f, "-%d -%d 0\n", vars[i], vars[j]);
         }
     }
@@ -83,6 +82,14 @@ int main(int argc, char** argv)
 
     fprintf(f, "c Row constraints.\n");
     /* YOUR CODE HERE */
+    for(int j = 0; j < n; j++) {
+        for(int k = 0; k < n; k++) {
+            for(int i = 0; i < n; i++){
+                vars[k] = x(sudoku, i, j, k);
+            }
+            eo(f, vars, n);
+        }
+    }
 
 
 
